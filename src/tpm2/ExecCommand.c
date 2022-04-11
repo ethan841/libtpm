@@ -182,6 +182,10 @@ ExecuteCommand(
     if(result != TPM_RC_SUCCESS)
 	goto Cleanup;
     // Check to see if the command is implemented.
+
+    //command code check & if not PCR command, then send command to hw
+    // tpm command code defined in TpmTypes.h & COMMAND structure -> TPM_CC
+
     command.index = CommandCodeToCommandIndex(command.code);
     if(UNIMPLEMENTED_COMMAND_INDEX == command.index)
 	{
