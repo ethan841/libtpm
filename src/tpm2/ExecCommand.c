@@ -211,6 +211,9 @@ ExecuteCommand(
 		result = TPM_RC_INITIALIZE;
 		goto Cleanup;
 	    }
+    
+    //after check TPM_startup -> send hw process code
+
     // Start regular command process.
     NvIndexCacheInit();
     // Parse Handle buffer.
