@@ -184,6 +184,7 @@ ExecuteCommand(
     // Check to see if the command is implemented.
 
     //command code check & if not PCR command, then send command to hw
+    //startup pass
     // tpm command code defined in TpmTypes.h & COMMAND structure -> TPM_CC
 
     command.index = CommandCodeToCommandIndex(command.code);
@@ -213,6 +214,7 @@ ExecuteCommand(
 	    }
     
     //after check TPM_startup -> send hw process code
+    //check tpm command code
 
     switch(command.code){
         case TPM_CC_PCR_Extend :
