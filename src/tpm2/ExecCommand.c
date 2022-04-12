@@ -214,6 +214,26 @@ ExecuteCommand(
     
     //after check TPM_startup -> send hw process code
 
+    switch(command.code){
+        case TPM_CC_PCR_Extend :
+            break;
+        case TPM_CC_PCR_Event :
+            break;
+        case TPM_CC_PCR_Read :
+            break;
+        case TPM_CC_PCR_Allocate :
+            break;
+        case TPM_CC_PCR_SetAuthPolicy :
+            break;
+        case TPM_CC_PCR_SetAuthValue :
+            break;
+        case TPM_CC_PCR_Reset :
+            break;
+        default :
+            result = TPM_RC_INITIALIZE;
+            goto Cleanup;
+    }
+
     // Start regular command process.
     NvIndexCacheInit();
     // Parse Handle buffer.
