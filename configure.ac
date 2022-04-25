@@ -302,7 +302,8 @@ if test "x$enable_hardening" != "xno"; then
 	fi
 	dnl Check linker for 'relro' and 'now'
 	save_CFLAGS="$CFLAGS"
-	CFLAGS="-Wl,-z,relro -Werror"
+	# CFLAGS="-Wl,-z,relro -Werror"
+	CFLAGS="-Wl,-z"
 	AC_MSG_CHECKING([whether linker supports -Wl,-z,relro])
 	AC_LINK_IFELSE(
 		[AC_LANG_SOURCE([[int main() { return 0; }]])],
@@ -310,7 +311,8 @@ if test "x$enable_hardening" != "xno"; then
 		 AC_MSG_RESULT(yes)],
 		[AC_MSG_RESULT(no)]
 	)
-	CFLAGS="-Wl,-z,now -Werror"
+	# CFLAGS="-Wl,-z,now -Werror"
+	CFLAGS="-Wl,-z"
 	AC_MSG_CHECKING([whether linker supports -Wl,-z,now])
 	AC_LINK_IFELSE(
 		[AC_LANG_SOURCE([[int main() { return 0; }]])],
@@ -323,7 +325,8 @@ if test "x$enable_hardening" != "xno"; then
 	AC_SUBST([HARDENING_LDFLAGS])
 fi
 
-AM_CFLAGS="$CFLAGS $COVERAGE_CFLAGS -Wall -Werror -Wreturn-type -Wsign-compare -Wno-self-assign -Wmissing-prototypes"
+# AM_CFLAGS="$CFLAGS $COVERAGE_CFLAGS -Wall -Werror -Wreturn-type -Wsign-compare -Wno-self-assign -Wmissing-prototypes"
+AM_CFLAGS="$CFLAGS $COVERAGE_CFLAGS -Wall -Wreturn-type -Wsign-compare -Wno-self-assign -Wmissing-prototypes"
 AM_CFLAGS="$AM_CFLAGS"
 AM_LDFLAGS="$LDFLAGS $COVERAGE_LDFLAGS"
 
