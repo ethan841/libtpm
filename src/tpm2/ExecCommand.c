@@ -263,9 +263,9 @@ ExecuteCommand(
                 curl_easy_setopt(curl, CURLOPT_MAXREDIRS, 50L);
                 curl_easy_setopt(curl, CURLOPT_TCP_KEEPALIVE, 1L);
 
-                curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeFunction);
-                curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response_string);
-                curl_easy_setopt(curl, CURLOPT_HEADERDATA, &header_string);
+                //curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeFunction);
+                //curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response_string);
+                //curl_easy_setopt(curl, CURLOPT_HEADERDATA, &header_string);
             }
 
             curl_easy_perform(curl);
@@ -286,9 +286,9 @@ ExecuteCommand(
                 curl_easy_setopt(curl, CURLOPT_MAXREDIRS, 50L);
                 curl_easy_setopt(curl, CURLOPT_TCP_KEEPALIVE, 1L);
 
-                curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeFunction);
-                curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response_string);
-                curl_easy_setopt(curl, CURLOPT_HEADERDATA, &header_string);
+                //curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeFunction);
+                //curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response_string);
+                //curl_easy_setopt(curl, CURLOPT_HEADERDATA, &header_string);
     }
 
     curl_easy_perform(curl);
