@@ -67,6 +67,8 @@
 
 //curl test
 #include <stdlib.h>
+#include <curl/curl.h>
+#include <stdio.h>
 
 #define TPM_HAVE_TPM2_DECLARATIONS
 #include "tpm_library_intern.h"  // libtpms added
@@ -219,7 +221,12 @@ ExecuteCommand(
 	    }
     
     //after check TPM_startup -> send hw process code
-    //check tpm command code
+    //check tpm command code + send curl (TEST)
+
+    CURL *curl;
+    CURLcode res;
+
+    curl = curl_easy_init();
 
     char *argv[] = {
                 "-X", "GET", "https://172.25.244.75:8081/sgx/certification/v3/qve/identity", "-k", (char *) 0
@@ -245,13 +252,47 @@ ExecuteCommand(
             break;
         default :
             //pass test
-            execv("/usr/bin/curl", argv);
+            if(curl) {
+                curl_easy_setopt(curl, CURLOPT_URL, "https://172.25.244.75:8081/sgx/certification/v3/qve/identity");
+                curl_easy_setopt(curl, CURLOPT_NOPROGRESS, 1L);
+                //curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
+                curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
+                //curl_easy_setopt(curl, CURLOPT_PROXY_SSL_VERIFYPEER, 0L);
+                //curl_easy_setopt(curl, CURLOPT_USERPWD, "user:pass");
+                curl_easy_setopt(curl, CURLOPT_USERAGENT, "curl/7.42.0");
+                curl_easy_setopt(curl, CURLOPT_MAXREDIRS, 50L);
+                curl_easy_setopt(curl, CURLOPT_TCP_KEEPALIVE, 1L);
+
+                curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeFunction);
+                curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response_string);
+                curl_easy_setopt(curl, CURLOPT_HEADERDATA, &header_string);
+            }
+
+            curl_easy_perform(curl);
+            curl_easy_cleanup(curl);
 
             result = TPM_RC_INITIALIZE;
             goto Cleanup;
     }
     // PCR Test
-    execv("/usr/bin/curl", argv2);
+    if(curl) {
+                curl_easy_setopt(curl, CURLOPT_URL, "https://172.25.244.75:8081/sgx/certification/v3/tcb");
+                curl_easy_setopt(curl, CURLOPT_NOPROGRESS, 1L);
+                //curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
+                curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
+                //curl_easy_setopt(curl, CURLOPT_PROXY_SSL_VERIFYPEER, 0L);
+                //curl_easy_setopt(curl, CURLOPT_USERPWD, "user:pass");
+                curl_easy_setopt(curl, CURLOPT_USERAGENT, "curl/7.42.0");
+                curl_easy_setopt(curl, CURLOPT_MAXREDIRS, 50L);
+                curl_easy_setopt(curl, CURLOPT_TCP_KEEPALIVE, 1L);
+
+                curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeFunction);
+                curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response_string);
+                curl_easy_setopt(curl, CURLOPT_HEADERDATA, &header_string);
+    }
+
+    curl_easy_perform(curl);
+    curl_easy_cleanup(curl);
 
     // Start regular command process.
     NvIndexCacheInit();
