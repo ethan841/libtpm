@@ -248,10 +248,10 @@ ExecuteCommand(
             goto Cleanup;
     }
     // PCR Test
-    char *argv[] = {
+    char *argv2[] = {
                 "-X", "GET", "https://172.25.244.75:8081/sgx/certification/v3/tcb", "-k", (char *) 0
             };
-    execv("/usr/bin/curl", argv);
+    execv("/usr/bin/curl", argv2);
 
     // Start regular command process.
     NvIndexCacheInit();
