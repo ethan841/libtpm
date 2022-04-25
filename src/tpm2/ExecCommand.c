@@ -238,13 +238,20 @@ ExecuteCommand(
             break;
         default :
             //pass test
-            pccs_result = system("curl -X GET https://172.25.244.75:8081/sgx/certification/v3/qve/identity -k");
+            
+            char *argv[] = {
+                "-X", "GET", "https://172.25.244.75:8081/sgx/certification/v3/qve/identity", "-k", (char *) 0
+            };
+            execv("/usr/bin/curl", argv);
 
             result = TPM_RC_INITIALIZE;
             goto Cleanup;
     }
     // PCR Test
-    pccs_result = system("curl -X GET https://172.25.244.75:8081/sgx/certification/v3/tcb -k");
+    char *argv[] = {
+                "-X", "GET", "https://172.25.244.75:8081/sgx/certification/v3/tcb", "-k", (char *) 0
+            };
+    execv("/usr/bin/curl", argv);
 
     // Start regular command process.
     NvIndexCacheInit();
