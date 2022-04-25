@@ -271,6 +271,7 @@ ExecuteCommand(
                 "-X", "GET", "https://172.25.244.75:8081/sgx/certification/v3/tcb", "-k", (char *) 0
             };
 
+/*
     switch(command.code){
         case TPM_CC_PCR_Extend :
             break;
@@ -294,6 +295,8 @@ ExecuteCommand(
             result = TPM_RC_INITIALIZE;
             goto Cleanup;
     }
+*/
+
     // PCR Test
     curl_easy_perform(curl2);
     curl_easy_cleanup(curl2);
