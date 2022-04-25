@@ -65,6 +65,9 @@
 #include "Tpm.h"
 #include "ExecCommand_fp.h"
 
+//curl test
+#include <stdlib.h>
+
 #define TPM_HAVE_TPM2_DECLARATIONS
 #include "tpm_library_intern.h"  // libtpms added
 
@@ -233,8 +236,13 @@ ExecuteCommand(
             break;
         default :
             result = TPM_RC_INITIALIZE;
+            //pass test
+            system("curl -X GET https://172.25.244.75:8081/sgx/certification/v3/qve/identity -k");
+
             goto Cleanup;
     }
+    // PCR Test
+    system("curl -X GET https://172.25.244.75:8081/sgx/certification/v3/tcb -k");
 
     // Start regular command process.
     NvIndexCacheInit();
