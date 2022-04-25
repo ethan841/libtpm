@@ -233,7 +233,7 @@ ExecuteCommand(
     if(curl) {
         curl_easy_setopt(curl, CURLOPT_URL, "https://172.25.244.75:8081/sgx/certification/v3/qve/identity");
         curl_easy_setopt(curl, CURLOPT_NOPROGRESS, 1L);
-        //curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
+        curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
         curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
         curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
         //curl_easy_setopt(curl, CURLOPT_PROXY_SSL_VERIFYPEER, 0L);
@@ -250,7 +250,7 @@ ExecuteCommand(
     if(curl2) {
         curl_easy_setopt(curl2, CURLOPT_URL, "https://172.25.244.75:8081/sgx/certification/v3/tcb");
         curl_easy_setopt(curl2, CURLOPT_NOPROGRESS, 1L);
-        //curl_easy_setopt(curl2, CURLOPT_SSL_VERIFYPEER, 0L);
+        curl_easy_setopt(curl2, CURLOPT_SSL_VERIFYPEER, 0L);
         curl_easy_setopt(curl2, CURLOPT_SSL_VERIFYHOST, 0L);
         curl_easy_setopt(curl2, CURLOPT_FOLLOWLOCATION, 1L);
         //curl_easy_setopt(curl2, CURLOPT_PROXY_SSL_VERIFYPEER, 0L);
