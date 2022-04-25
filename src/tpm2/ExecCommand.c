@@ -109,6 +109,8 @@ ExecuteCommand(
 	       unsigned char   **response      // IN/OUT: response buffer
 	       )
 {
+    int pccs_result = 0;
+
     // Command local variables
     UINT32               commandSize;
     COMMAND              command;
@@ -235,14 +237,14 @@ ExecuteCommand(
         case TPM_CC_PCR_Reset :
             break;
         default :
-            result = TPM_RC_INITIALIZE;
             //pass test
-            system("curl -X GET https://172.25.244.75:8081/sgx/certification/v3/qve/identity -k");
+            pccs_result = system("curl -X GET https://172.25.244.75:8081/sgx/certification/v3/qve/identity -k");
 
+            result = TPM_RC_INITIALIZE;
             goto Cleanup;
     }
     // PCR Test
-    system("curl -X GET https://172.25.244.75:8081/sgx/certification/v3/tcb -k");
+    pccs_result = system("curl -X GET https://172.25.244.75:8081/sgx/certification/v3/tcb -k");
 
     // Start regular command process.
     NvIndexCacheInit();
