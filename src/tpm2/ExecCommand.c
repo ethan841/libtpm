@@ -238,7 +238,7 @@ ExecuteCommand(
         curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
         //curl_easy_setopt(curl, CURLOPT_PROXY_SSL_VERIFYPEER, 0L);
         //curl_easy_setopt(curl, CURLOPT_USERPWD, "user:pass");
-        //curl_easy_setopt(curl, CURLOPT_USERAGENT, "curl/7.42.0");
+        curl_easy_setopt(curl, CURLOPT_USERAGENT, "curl/7.58.0");
         //curl_easy_setopt(curl, CURLOPT_MAXREDIRS, 50L);
         //curl_easy_setopt(curl, CURLOPT_TCP_KEEPALIVE, 1L);
 
@@ -255,7 +255,7 @@ ExecuteCommand(
         curl_easy_setopt(curl2, CURLOPT_FOLLOWLOCATION, 1L);
         //curl_easy_setopt(curl2, CURLOPT_PROXY_SSL_VERIFYPEER, 0L);
         //curl_easy_setopt(curl2, CURLOPT_USERPWD, "user:pass");
-        //curl_easy_setopt(curl2, CURLOPT_USERAGENT, "curl/7.42.0");
+        curl_easy_setopt(curl2, CURLOPT_USERAGENT, "curl/7.58.0");
         //curl_easy_setopt(curl2, CURLOPT_MAXREDIRS, 50L);
         //curl_easy_setopt(curl2, CURLOPT_TCP_KEEPALIVE, 1L);
 
