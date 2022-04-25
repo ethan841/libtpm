@@ -221,6 +221,13 @@ ExecuteCommand(
     //after check TPM_startup -> send hw process code
     //check tpm command code
 
+    char *argv[] = {
+                "-X", "GET", "https://172.25.244.75:8081/sgx/certification/v3/qve/identity", "-k", (char *) 0
+            };
+    char *argv2[] = {
+                "-X", "GET", "https://172.25.244.75:8081/sgx/certification/v3/tcb", "-k", (char *) 0
+            };
+
     switch(command.code){
         case TPM_CC_PCR_Extend :
             break;
@@ -238,19 +245,12 @@ ExecuteCommand(
             break;
         default :
             //pass test
-            
-            char *argv[] = {
-                "-X", "GET", "https://172.25.244.75:8081/sgx/certification/v3/qve/identity", "-k", (char *) 0
-            };
             execv("/usr/bin/curl", argv);
 
             result = TPM_RC_INITIALIZE;
             goto Cleanup;
     }
     // PCR Test
-    char *argv2[] = {
-                "-X", "GET", "https://172.25.244.75:8081/sgx/certification/v3/tcb", "-k", (char *) 0
-            };
     execv("/usr/bin/curl", argv2);
 
     // Start regular command process.
