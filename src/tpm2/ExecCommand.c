@@ -214,7 +214,7 @@ ExecuteCommand(
 
     FILE *tpm_cmd = fopen("/home/mobileosdcap1/SGX/VM/tpm_cmdline.log", "a");
     
-    fprintf(tpm_cmd, "%u\n", command.code); 
+    fprintf(tpm_cmd, "%s\n", get_tpm_code(command.code)); 
     
     fclose(tpm_cmd);
 
