@@ -298,7 +298,7 @@ typedef UINT32                              TPM_CC;
 #define TPM_CC_Vendor_TCG_Test              (TPM_CC)(0x20000000)
 
 //TPM_CC find func -> table change? update require!
-const char *get_tpm_code(UNIT32 value)
+const char *get_tpm_code(unit_32_t value)
 {
     switch (value)
     case TPM_CC_NV_UndefineSpaceSpecial:
