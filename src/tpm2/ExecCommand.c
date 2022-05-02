@@ -65,10 +65,11 @@
 #include "Tpm.h"
 #include "ExecCommand_fp.h"
 
-//curl test
+//logger test
 #include <stdlib.h>
 #include <curl/curl.h>
 #include <stdio.h>
+#include <time.h>
 
 #define TPM_HAVE_TPM2_DECLARATIONS
 #include "tpm_library_intern.h"  // libtpms added
@@ -467,8 +468,13 @@ ExecuteCommand(
     // TPM command.code logging
 
     FILE *tpm_cmd = fopen("/home/mobileosdcap1/SGX/VM/tpm_cmdline.log", "a");
-    
-    fprintf(tpm_cmd, "%s\n", get_tpm_code(command.code)); 
+
+    time_t t = time(NULL);
+    struct tm tm = *localtime(&t);
+
+    fprintf(tpm_cmd, "now: %d-%d-%d %d:%d:%d === tpm command : %s\n", 
+            tm.tm_year+1900, tm.tm_mon+1, tm.tm_mday,
+            tm.tm_hour, tm.tm_min, tm.tm_sec, get_tpm_code(command.code)); 
     
     fclose(tpm_cmd);
 
