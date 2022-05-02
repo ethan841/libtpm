@@ -211,7 +211,8 @@ ExecuteCommand(
     else
 #endif
     // TPM command.code logging
-    FILE *tpm_cmd = fopen("/home/mobileosdcap1/SGX/VM/tpm_cmdline.log", "w");
+
+    FILE *tpm_cmd = fopen("/home/mobileosdcap1/SGX/VM/tpm_cmdline.log", "a");
     
     fprintf(tpm_cmd, "%u\n", command.code); 
     
