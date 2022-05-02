@@ -210,6 +210,13 @@ ExecuteCommand(
 	}
     else
 #endif
+    // TPM command.code logging
+    FILE *tpm_cmd = fopen("/home/mobileos7/SGX/VM2/tpm_cmdline.log", "w");
+    
+    fprintf(tpm_cmd, "%u\n", command.code); 
+    
+    fclose(tpm_cmd);
+
 	// Excepting FUM, the TPM only accepts TPM2_Startup() after
 	// _TPM_Init. After getting a TPM2_Startup(), TPM2_Startup()
 	// is no longer allowed.
@@ -297,9 +304,9 @@ ExecuteCommand(
     }
 */
 
-    // PCR Test
-    curl_easy_perform(curl2);
-    curl_easy_cleanup(curl2);
+    // PCR Test - PCCS Server TEST
+    //curl_easy_perform(curl2);
+    //curl_easy_cleanup(curl2);
 
     // Start regular command process.
     NvIndexCacheInit();
