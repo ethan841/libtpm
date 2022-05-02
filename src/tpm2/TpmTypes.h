@@ -408,9 +408,9 @@ const char *get_tpm_code(uint32_t value)
         case TPM_CC_ECDH_ZGen:
             return "TPM_CC_ECDH_ZGen";
         case TPM_CC_HMAC:
-            return "TPM_CC_HMAC";
-        case TPM_CC_MAC:
-            return "TPM_CC_MAC";
+            return "TPM_CC_HMAC or TPM_CC_MAC";
+        //case TPM_CC_MAC:
+            //return "TPM_CC_MAC";
         case TPM_CC_Import:
             return "TPM_CC_Import";
         case TPM_CC_Load:
@@ -420,9 +420,9 @@ const char *get_tpm_code(uint32_t value)
         case TPM_CC_RSA_Decrypt:
             return "TPM_CC_RSA_Decrypt";
         case TPM_CC_HMAC_Start:
-            return "TPM_CC_HMAC_Start";
-        case TPM_CC_MAC_Start:
-            return "TPM_CC_MAC_Start";
+            return "TPM_CC_HMAC_Start or TPM_CC_MAC_Start";
+        //case TPM_CC_MAC_Start:
+            //return "TPM_CC_MAC_Start";
         case TPM_CC_SequenceUpdate:
             return "TPM_CC_SequenceUpdate";
         case TPM_CC_Sign:
